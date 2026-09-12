@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ptmitrabumirejeki.com/sitemap.xml

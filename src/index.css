@@ -1,0 +1,167 @@
+/* PT Mitra Bumi Rejeki — Global Styles */
+
+@font-face {
+  font-family: 'Fresh Mango';
+  src: url('./assets/fonts/FreshMango.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fresh Mango';
+  src: url('./assets/fonts/FreshMango-Italic.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-black:      #111111;
+    --color-darkblack:  #080808;
+    --color-gold:       #C8A45D;
+    --color-lightgold:  #DFBF79;
+    --color-offwhite:   #F7F6F2;
+    --color-white:      #FFFFFF;
+    --color-gray:       #6B7280;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-brand-offwhite text-brand-black font-sans antialiased;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  * {
+    @apply box-border;
+  }
+
+  ::selection {
+    @apply bg-brand-gold/30 text-brand-black;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-brand-darkblack;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-brand-gold rounded-full;
+  }
+}
+
+@layer components {
+  /* Gold accent line */
+  .gold-line {
+    @apply w-12 h-0.5 bg-brand-gold;
+  }
+
+  .gold-line-lg {
+    @apply w-20 h-0.5 bg-brand-gold;
+  }
+
+  /* Section spacing */
+  .section-padding {
+    @apply py-20 md:py-28 lg:py-32;
+  }
+
+  .section-padding-sm {
+    @apply py-12 md:py-16;
+  }
+
+  /* Container */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Buttons */
+  .btn-gold {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 bg-brand-gold text-brand-darkblack font-semibold text-sm tracking-widest uppercase transition-all duration-300 hover:bg-brand-lightgold hover:shadow-lg hover:shadow-brand-gold/20 active:scale-95;
+  }
+
+  .btn-outline-gold {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 border border-brand-gold text-brand-gold font-semibold text-sm tracking-widest uppercase transition-all duration-300 hover:bg-brand-gold hover:text-brand-darkblack active:scale-95;
+  }
+
+  .btn-outline-white {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 border border-white text-white font-semibold text-sm tracking-widest uppercase transition-all duration-300 hover:bg-white hover:text-brand-black active:scale-95;
+  }
+
+  /* Cards */
+  .card-dark {
+    @apply bg-brand-black border border-white/5 transition-all duration-300 hover:border-brand-gold/30;
+  }
+
+  .card-light {
+    @apply bg-white border border-brand-black/5 shadow-sm transition-all duration-300 hover:shadow-md hover:border-brand-gold/30;
+  }
+
+  /* Text styles */
+  .label-gold {
+    @apply text-brand-gold font-semibold text-xs tracking-[0.3em] uppercase;
+  }
+
+  .heading-xl {
+    @apply text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight;
+  }
+
+  .heading-lg {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight;
+  }
+
+  .heading-md {
+    @apply text-2xl md:text-3xl font-bold;
+  }
+
+  .body-lg {
+    @apply text-base md:text-lg text-brand-gray leading-relaxed;
+  }
+
+  /* Nav link */
+  .nav-link {
+    @apply text-sm font-medium tracking-wide transition-colors duration-200 hover:text-brand-gold;
+  }
+
+  /* Form inputs */
+  .form-input {
+    @apply w-full bg-transparent border border-white/20 text-white px-4 py-3.5 text-sm placeholder-white/30 focus:outline-none focus:border-brand-gold transition-colors duration-200;
+  }
+
+  .form-input-error {
+    @apply border-red-500 focus:border-red-400;
+  }
+
+  /* Image overlay */
+  .img-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-brand-darkblack via-brand-darkblack/40 to-transparent;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-grid-pattern {
+    background-image: 
+      linear-gradient(rgba(200, 164, 93, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200, 164, 93, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .mask-gradient-b {
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  }
+}
