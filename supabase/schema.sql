@@ -213,13 +213,13 @@ VALUES
   8
 ),
 (
-  'sky-amor-agency',
-  'Sky Amor Agency',
+  'sky-armor-regency',
+  'Sky Armor Regency',
   'Semarang Barat, Semarang',
   'Project',
   'Proyek',
-  'Sky Amor Agency adalah proyek renovasi dan penataan ruang kantor agensi yang berlokasi di Semarang Barat. PT Mitra Bumi Rejeki menangani pekerjaan interior dan finishing ruangan untuk menciptakan lingkungan kerja yang profesional dan inspiratif. Desain ruang mengutamakan kenyamanan dan efisiensi tata letak area kerja.',
-  'Sky Amor Agency is an office renovation and space planning project for an agency located in West Semarang. PT Mitra Bumi Rejeki handled interior works and room finishing to create a professional and inspiring work environment. The spatial design prioritizes comfort and efficiency in the office layout.',
+  'Sky Armor Regency adalah proyek perumahan dan penataan lingkungan yang berlokasi di Semarang Barat. PT Mitra Bumi Rejeki menangani pekerjaan konstruksi, interior, dan finishing untuk menciptakan hunian yang nyaman, modern, dan berkualitas.',
+  'Sky Armor Regency is a residential and spatial development project located in West Semarang. PT Mitra Bumi Rejeki handled construction, interior, and finishing works to create a comfortable, modern, and quality living environment.',
   '/images/projects/sky-amor-agency.jpg',
   '[]'::jsonb,
   false,

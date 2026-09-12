@@ -8,6 +8,7 @@ export default function SectionTitle({
   align = 'left',   // 'left' | 'center'
   light = false,    // light text (on dark bg)
   className = '',
+  as: HeadingTag = 'h2',
 }) {
   const alignClass = align === 'center' ? 'items-center text-center' : 'items-start text-left';
   const textColor  = light ? 'text-white' : 'text-brand-black';
@@ -25,7 +26,7 @@ export default function SectionTitle({
         <span className="label-gold">{label}</span>
       )}
       <div className={`flex flex-col gap-1 ${align === 'center' ? 'items-center' : 'items-start'}`}>
-        <h2 className={`heading-lg ${textColor} text-balance leading-tight`}>{headline}</h2>
+        <HeadingTag className={`heading-lg ${textColor} text-balance leading-tight`}>{headline}</HeadingTag>
       </div>
       {subhead && (
         <p className={`body-lg max-w-2xl ${subColor}`}>{subhead}</p>

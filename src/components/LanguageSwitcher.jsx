@@ -4,8 +4,8 @@ import { useLanguage } from '../context/LanguageContext';
 export default function LanguageSwitcher({ light = false, className = '' }) {
   const { lang, setLanguage } = useLanguage();
 
-  const base   = 'text-sm font-bold tracking-widest transition-colors duration-200 px-1.5 py-0.5';
-  const active = 'text-brand-gold';
+  const base   = 'text-xs font-semibold tracking-wider transition-colors duration-200 px-1.5 py-0.5';
+  const active = 'text-brand-gold font-bold';
   const inactive = light ? 'text-white/60 hover:text-white' : 'text-brand-gray hover:text-brand-black';
 
   return (
@@ -17,7 +17,7 @@ export default function LanguageSwitcher({ light = false, className = '' }) {
       >
         ID
       </button>
-      <span className={`text-xs ${light ? 'text-white/30' : 'text-brand-gray/40'}`}>|</span>
+      <span className={`text-[10px] ${light ? 'text-white/30' : 'text-brand-gray/40'}`}>|</span>
       <button
         onClick={() => setLanguage('en')}
         className={`${base} ${lang === 'en' ? active : inactive}`}

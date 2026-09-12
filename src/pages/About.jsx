@@ -1,11 +1,11 @@
 // src/pages/About.jsx
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '../context/LanguageContext';
 import { company } from '../data/company';
 import PageTransition from '../components/PageTransition';
 import SectionTitle from '../components/SectionTitle';
+import SEO from '../components/SEO';
 import aboutImg from '../assets/about-construction.jpg';
 import heroImg from '../assets/hero-construction.jpg';
 
@@ -14,22 +14,24 @@ export default function About() {
 
   return (
     <PageTransition>
-      <Helmet>
-        <title>Tentang Kami | PT Mitra Bumi Rejeki</title>
-        <meta name="description" content="Kenali PT Mitra Bumi Rejeki — General Contractor dan Developer dengan pengalaman sejak 2000 dalam konstruksi, renovasi, dan pengembangan proyek." />
-      </Helmet>
+      <SEO
+        title={lang === 'id' ? 'Tentang Kami - Profil PT Mitra Bumi Rejeki' : 'About Us - PT Mitra Bumi Rejeki Profile'}
+        description={lang === 'id' ? 'Kenali PT Mitra Bumi Rejeki — General Contractor dan Developer terpercaya dengan pengalaman sejak tahun 2000, tersertifikasi ISO 9001 untuk jasa konstruksi dan renovasi.' : 'Discover PT Mitra Bumi Rejeki — Trusted General Contractor and Developer with construction experience since 2000, ISO 9001 certified in Semarang, Central Java.'}
+        canonical="/about"
+        keywords="profil pt mitra bumi rejeki, tentang kami, kontraktor berpengalaman semarang, iso 9001 kontraktor"
+      />
 
       {/* ── PAGE HEADER ──────────────────────────────────────── */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-brand-darkblack overflow-hidden" aria-label="About page header">
         <div className="absolute inset-0 z-0 opacity-20">
-          <img src={heroImg} alt="" className="w-full h-full object-cover" aria-hidden="true" />
+          <img src={heroImg} alt="Latar belakang konstruksi PT Mitra Bumi Rejeki" className="w-full h-full object-cover" loading="lazy" />
           <div className="absolute inset-0 bg-brand-darkblack/80" />
         </div>
         <div className="container-custom relative z-10">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <span className="label-gold text-[11px]">{t('about.label')}</span>
 
-            <h1 className="text-white font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight max-w-3xl">
+            <h1 className="text-white font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight max-w-3xl">
               {t('about.headline')}
             </h1>
           </motion.div>
@@ -43,7 +45,7 @@ export default function About() {
             {/* Image */}
             <div data-aos="fade-right" data-aos-duration="800" className="relative order-2 lg:order-1">
               <div className="relative overflow-hidden aspect-[4/3]">
-                <img src={aboutImg} alt="PT Mitra Bumi Rejeki construction" className="w-full h-full object-cover" loading="lazy" />
+                <img src={aboutImg} alt="Aktivitas dan proyek konstruksi bangunan PT Mitra Bumi Rejeki" className="w-full h-full object-cover" loading="lazy" />
               </div>
               <div className="absolute sm:-bottom-4 sm:-right-4 -bottom-2 -right-2 w-2/3 h-2/3 border border-brand-gold/25 -z-10" />
             </div>
@@ -101,7 +103,7 @@ export default function About() {
         <div className="container-custom">
           <div data-aos="fade-up" className="mb-12">
             <span className="label-gold text-[11px] block mb-3">EXPERIENCE & AWARDS</span>
-            <h2 className="text-white font-black text-3xl sm:text-4xl md:text-5xl uppercase tracking-tight">
+            <h2 className="text-white font-black text-2xl sm:text-3xl md:text-4xl uppercase tracking-tight">
               {lang === 'id' ? 'Pengalaman & Penghargaan' : 'Experience & Awards'}
             </h2>
 
@@ -168,7 +170,7 @@ export default function About() {
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div data-aos="fade-right">
-              <h2 className="text-brand-darkblack font-black text-3xl md:text-4xl leading-tight mb-4">{t('cta.headline')}</h2>
+              <h2 className="text-brand-darkblack font-black text-2xl md:text-3xl leading-tight mb-4">{t('cta.headline')}</h2>
               <p className="text-brand-darkblack/70 text-base leading-relaxed text-justify">{t('cta.body')}</p>
             </div>
             <div data-aos="fade-left" data-aos-delay="100" className="flex justify-start md:justify-end">

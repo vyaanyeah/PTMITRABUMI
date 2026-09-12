@@ -5,15 +5,24 @@ import { projects as fallbackProjects } from '../data/projects';
 // Helper to normalize Supabase project row to match component data structure
 export function normalizeProject(row) {
   if (!row) return null;
+  const isSkyArmor = row.id === 'sky-amor-agency' || row.id === 'sky-armor-regency' || row.title === 'Sky Amor Agency';
+  const title = isSkyArmor ? 'Sky Armor Regency' : row.title;
+  let descId = row.description_id || '';
+  let descEn = row.description_en || row.description_id || '';
+  if (isSkyArmor) {
+    descId = descId.replace(/Sky Amor Agency/gi, 'Sky Armor Regency');
+    descEn = descEn.replace(/Sky Amor Agency/gi, 'Sky Armor Regency');
+  }
+
   return {
     id: row.id,
-    title: row.title,
+    title,
     location: row.location || '',
     category: row.category || 'Construction',
     categoryID: row.category_id || 'Konstruksi',
     description: {
-      id: row.description_id || '',
-      en: row.description_en || row.description_id || '',
+      id: descId,
+      en: descEn,
     },
     image: row.image || '',
     gallery: Array.isArray(row.gallery) ? row.gallery : [],
@@ -56,25 +65,36 @@ export async function getProjects() {
 
 // 2. Ambil detail satu proyek berdasarkan ID (slug)
 export async function getProjectById(id) {
+  const isMatch = (pId, targetId) =>
+    pId === targetId ||
+    (targetId === 'sky-amor-agency' && pId === 'sky-armor-regency') ||
+    (targetId === 'sky-armor-regency' && pId === 'sky-amor-agency');
+
   if (!isSupabaseConfigured || !supabase) {
-    return fallbackProjects.find(p => p.id === id) || null;
+    return fallbackProjects.find(p => isMatch(p.id, id)) || null;
   }
 
   try {
-    const { data, error } = await supabase
+    let { data, error } = await supabase
       .from('projects')
       .select('*')
       .eq('id', id)
-      .single();
+      .maybeSingle();
 
-    if (error || !data) {
-      return fallbackProjects.find(p => p.id === id) || null;
+    if (!data && (id === 'sky-armor-regency' || id === 'sky-amor-agency')) {
+      const altId = id === 'sky-armor-regency' ? 'sky-amor-agency' : 'sky-armor-regency';
+      const altRes = await supabase.from('projects').select('*').eq('id', altId).maybeSingle();
+      if (altRes.data) data = altRes.data;
+    }
+
+    if (!data) {
+      return fallbackProjects.find(p => isMatch(p.id, id)) || null;
     }
 
     return normalizeProject(data);
   } catch (err) {
     console.warn('[projectService] Gagal getProjectById dari Supabase:', err);
-    return fallbackProjects.find(p => p.id === id) || null;
+    return fallbackProjects.find(p => isMatch(p.id, id)) || null;
   }
 }
 

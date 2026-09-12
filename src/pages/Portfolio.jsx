@@ -1,12 +1,12 @@
 // src/pages/Portfolio.jsx
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '../context/LanguageContext';
 import { projectCategories, projects as initialProjects } from '../data/projects';
 import { getProjects } from '../services/projectService';
 import PageTransition from '../components/PageTransition';
 import ProjectCard from '../components/ProjectCard';
+import SEO from '../components/SEO';
 import heroImg from '../assets/hero-construction.jpg';
 
 export default function Portfolio() {
@@ -32,22 +32,24 @@ export default function Portfolio() {
 
   return (
     <PageTransition>
-      <Helmet>
-        <title>Portofolio | PT Mitra Bumi Rejeki</title>
-        <meta name="description" content="Portofolio proyek PT Mitra Bumi Rejeki — konstruksi, renovasi, dan pengembangan. Lihat daftar proyek yang telah kami kerjakan." />
-      </Helmet>
+      <SEO
+        title={lang === 'id' ? 'Portofolio Proyek Konstruksi & Developer | PT Mitra Bumi Rejeki' : 'Project Portfolio & Construction Works | PT Mitra Bumi Rejeki'}
+        description={lang === 'id' ? 'Kumpulan portofolio proyek konstruksi, pembangunan gedung, perumahan, hotel, dan fasilitas publik oleh PT Mitra Bumi Rejeki di berbagai daerah di Indonesia.' : 'Explore construction, commercial, residential, and hotel building projects by PT Mitra Bumi Rejeki across Indonesia.'}
+        canonical="/portfolio"
+        keywords="portofolio konstruksi, proyek pt mitra bumi rejeki, proyek hotel semarang, pembangunan gedung komersial, perumahan semarang"
+      />
 
       {/* ── PAGE HEADER ──────────────────────────────────────── */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-brand-darkblack overflow-hidden" aria-label="Portfolio page header">
         <div className="absolute inset-0 z-0 opacity-15">
-          <img src={heroImg} alt="" className="w-full h-full object-cover" aria-hidden="true" />
+          <img src={heroImg} alt="Portofolio proyek konstruksi dan arsitektur PT Mitra Bumi Rejeki" className="w-full h-full object-cover" loading="lazy" />
           <div className="absolute inset-0 bg-brand-darkblack/80" />
         </div>
         <div className="container-custom relative z-10">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <span className="label-gold text-[11px]">{t('portfolio.label')}</span>
 
-            <h1 className="text-white font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight max-w-3xl">
+            <h1 className="text-white font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight max-w-3xl">
               {t('portfolio.headline')}
             </h1>
             <p className="text-white/50 mt-4 text-sm max-w-xl leading-relaxed">{t('portfolio.subhead')}</p>

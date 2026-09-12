@@ -24,7 +24,7 @@ export default function ProjectCard({ project, index = 0 }) {
           {project.image ? (
             <img
               src={project.image}
-              alt={project.title}
+              alt={`${project.title} - ${project.location ? `${project.location} - ` : ''}PT Mitra Bumi Rejeki`}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               loading="lazy"
             />

@@ -59,24 +59,24 @@ export default function Navbar() {
         <div className="w-full max-w-[1550px] mx-auto px-6 sm:px-10 lg:px-12 flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group" aria-label="PT Mitra Bumi Rejeki Home">
-            <img src={logoImg} alt="PT Mitra Bumi Rejeki" className="h-10 md:h-12 w-auto rounded-sm" />
+            <img src={logoImg} alt="PT Mitra Bumi Rejeki" className="h-9 md:h-11 w-auto rounded-sm" />
             <div className="flex flex-col leading-none">
-              <span className="font-cinzel font-bold italic text-brand-gold text-base md:text-lg tracking-[0.08em] uppercase group-hover:text-brand-lightgold transition-colors duration-200">
+              <span className="font-cinzel font-bold italic text-brand-gold text-sm md:text-[15px] tracking-[0.08em] uppercase group-hover:text-brand-lightgold transition-colors duration-200">
                 MITRA BUMI REJEKI
               </span>
-              <span className="text-white/40 text-[9px] md:text-[10px] tracking-[0.3em] uppercase font-medium mt-0.5 font-sans">
+              <span className="text-white/40 text-[8px] md:text-[9px] tracking-[0.25em] uppercase font-medium mt-0.5 font-sans">
                 General Contractor
               </span>
             </div>
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-8 xl:gap-10" aria-label="Desktop navigation">
+          <nav className="hidden lg:flex items-center gap-7 xl:gap-9" aria-label="Desktop navigation">
             {navLinks.map(({ key, href }) => (
               <Link
                 key={key}
                 to={href}
-                className={`text-base xl:text-[17px] font-semibold tracking-wide transition-colors duration-200 py-1 ${
+                className={`text-sm xl:text-[15px] font-semibold tracking-wide transition-colors duration-200 py-1 ${
                   isActive(href)
                     ? 'text-brand-gold'
                     : 'text-white/75 hover:text-brand-gold'
@@ -89,15 +89,15 @@ export default function Navbar() {
           </nav>
 
           {/* Right actions */}
-          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
+          <div className="hidden lg:flex items-center gap-5 xl:gap-6">
             <LanguageSwitcher light />
-            <Link to="/contact" className="btn-gold text-sm font-bold px-6 py-3">
+            <Link to="/contact" className="btn-gold text-xs font-bold px-5 py-2.5 tracking-wider">
               {t('nav.cta')}
             </Link>
           </div>
 
           {/* Mobile hamburger */}
-          <div className="flex lg:hidden items-center gap-4">
+          <div className="flex lg:hidden items-center gap-3">
             <LanguageSwitcher light />
             <button
               id="mobile-menu-toggle"
@@ -133,7 +133,7 @@ export default function Navbar() {
               <div className="mb-12 flex items-center gap-3">
                 <img src={logoImg} alt="PT Mitra Bumi Rejeki" className="h-12 w-auto rounded-sm" />
                 <div>
-                  <span className="font-cinzel font-bold italic text-brand-gold text-base tracking-[0.08em] uppercase block">MITRA BUMI REJEKI</span>
+                  <span className="font-cinzel font-bold italic text-brand-gold text-sm tracking-[0.08em] uppercase block">MITRA BUMI REJEKI</span>
                   <span className="text-white/40 text-[9px] tracking-[0.3em] uppercase font-sans">General Contractor</span>
                 </div>
               </div>
@@ -163,7 +163,7 @@ export default function Navbar() {
                 transition={{ delay: 0.5 }}
                 className="mt-10"
               >
-                <Link to="/contact" className="btn-gold" onClick={() => setMenuOpen(false)}>
+                <Link to="/contact" className="btn-gold text-xs font-bold px-6 py-3 tracking-wider" onClick={() => setMenuOpen(false)}>
                   {t('nav.cta')}
                 </Link>
               </motion.div>

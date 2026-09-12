@@ -1,10 +1,10 @@
 // src/pages/Contact.jsx
-import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '../context/LanguageContext';
 import { company } from '../data/company';
 import PageTransition from '../components/PageTransition';
 import SectionTitle from '../components/SectionTitle';
 import ContactForm from '../components/ContactForm';
+import SEO from '../components/SEO';
 
 function ContactInfo({ icon, label, children, delay = 0 }) {
   return (
@@ -21,14 +21,16 @@ function ContactInfo({ icon, label, children, delay = 0 }) {
 }
 
 export default function Contact() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <PageTransition>
-      <Helmet>
-        <title>Kontak | PT Mitra Bumi Rejeki</title>
-        <meta name="description" content="Hubungi PT Mitra Bumi Rejeki untuk konsultasi proyek konstruksi, renovasi, dan pengembangan. Semarang, Jawa Tengah." />
-      </Helmet>
+      <SEO
+        title={lang === 'id' ? 'Kontak Kami & Konsultasi Proyek | PT Mitra Bumi Rejeki' : 'Contact Us & Project Consultation | PT Mitra Bumi Rejeki'}
+        description={lang === 'id' ? 'Hubungi tim ahli PT Mitra Bumi Rejeki untuk konsultasi gratis rencana proyek konstruksi, renovasi gedung, estimasi anggaran RAB, dan arsitektur di Semarang.' : 'Contact PT Mitra Bumi Rejeki for consultation on construction projects, building renovation, budget estimation, and architectural design in Semarang.'}
+        canonical="/contact"
+        keywords="kontak kontraktor semarang, konsultasi konstruksi, rab renovasi gedung, alamat pt mitra bumi rejeki"
+      />
 
       {/* ── CONTACT MAIN ─────────────────────────────────────── */}
       <section id="contact-main" className="pt-28 pb-20 md:pt-36 md:pb-28 lg:pt-40 lg:pb-32 bg-brand-darkblack" aria-label="Contact information and form">
@@ -38,12 +40,12 @@ export default function Contact() {
             {/* Left: info */}
             <div className="flex flex-col gap-8">
               <div data-aos="fade-right">
-                <SectionTitle label={t('contact.label')} headline={t('contact.headline')} subhead={t('contact.subhead')} light />
+                <SectionTitle label={t('contact.label')} headline={t('contact.headline')} subhead={t('contact.subhead')} light as="h1" />
               </div>
 
               <div className="flex flex-col gap-6 mt-2">
                 {company.contact.phones.map(({ label, number, href }, i) => (
-                  <ContactInfo key={label} icon="☎" label={`${t('contact.phone')} — ${label}`} delay={i * 80 + 100}>
+                  <ContactInfo key={label} icon="☎" label={label} delay={i * 80 + 100}>
                     <a href={href} className="text-white font-semibold hover:text-brand-gold transition-colors duration-200" target="_blank" rel="noopener noreferrer">
                       {number}
                     </a>

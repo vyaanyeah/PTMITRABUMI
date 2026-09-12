@@ -48,7 +48,6 @@ export const company = {
   contact: {
     phones: [
       { label: 'WhatsApp', number: '088-1290-2112', href: 'https://wa.me/628812902112' },
-      { label: 'Phone', number: '081-225-000-582', href: 'tel:+62081225000582' },
     ],
     email: 'mitrabumirejeki@gmail.com',
     address: 'Jl. Watu Kaji No. 107, RT 02/RW 07, Gedawang, Banyumanik, Semarang',

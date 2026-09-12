@@ -1,11 +1,11 @@
 // src/pages/ProjectDetail.jsx
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '../context/LanguageContext';
 import { projects as fallbackProjects } from '../data/projects';
 import { getProjectById, getProjects } from '../services/projectService';
 import PageTransition from '../components/PageTransition';
+import SEO from '../components/SEO';
 
 export default function ProjectDetail() {
   const { id } = useParams();
@@ -66,12 +66,47 @@ export default function ProjectDetail() {
     );
   }
 
+  const projectDesc = tObj(project.description) || (typeof project.description === 'string' ? project.description : (project.description?.id || ''));
+  const cleanDesc = projectDesc
+    ? projectDesc.replace(/\s+/g, ' ').slice(0, 160)
+    : `${project.title} - Proyek konstruksi dan renovasi oleh PT Mitra Bumi Rejeki di ${project.location || 'Indonesia'}.`;
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Beranda',
+        item: 'https://ptmitrabumirejeki.com',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Portofolio',
+        item: 'https://ptmitrabumirejeki.com/portfolio',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: project.title,
+        item: `https://ptmitrabumirejeki.com/portfolio/${project.id || id}`,
+      },
+    ],
+  };
+
   return (
     <PageTransition>
-      <Helmet>
-        <title>{project.title} | PT Mitra Bumi Rejeki</title>
-        <meta name="description" content={`${project.title} — ${project.location ?? 'PT Mitra Bumi Rejeki'}`} />
-      </Helmet>
+      <SEO
+        title={`${project.title} - Portofolio PT Mitra Bumi Rejeki`}
+        description={cleanDesc}
+        canonical={`/portfolio/${project.id || id}`}
+        ogImage={project.image}
+        ogType="article"
+        schema={breadcrumbSchema}
+        keywords={`${project.title}, ${project.location || ''}, proyek pt mitra bumi rejeki, kontraktor semarang`}
+      />
 
       {/* ── PROJECT HEADER ────────────────────────────────────── */}
       {/* Foto tidak di-stretch full banner (resolusi rendah) — ditampilkan sebagai thumbnail proporsional */}
@@ -86,7 +121,7 @@ export default function ProjectDetail() {
               <span className="label-gold text-[10px] block mb-3">
                 {lang === 'id' ? project.categoryID : project.category}
               </span>
-              <h1 className="text-white font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight mb-3">
+              <h1 className="text-white font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-tight mb-3">
                 {project.title}
               </h1>
               {project.location && (
@@ -101,8 +136,9 @@ export default function ProjectDetail() {
                 <div className="relative overflow-hidden border border-brand-gold/20" style={{ aspectRatio: '4/3' }}>
                   <img
                     src={project.image}
-                    alt={project.title}
+                    alt={`${project.title} - ${project.location ? `${project.location} - ` : ''}PT Mitra Bumi Rejeki`}
                     className="w-full h-full object-cover"
+                    loading="lazy"
                     style={{ opacity: 0.9 }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-darkblack/40 to-transparent" />
@@ -135,7 +171,7 @@ export default function ProjectDetail() {
             <div data-aos="fade-right" data-aos-duration="700" className="lg:col-span-2 flex flex-col gap-8">
               <div>
 
-                <h1 className="heading-lg text-brand-black mb-2">{project.title}</h1>
+                <h2 className="heading-lg text-brand-black mb-2">{project.title}</h2>
                 {project.location && (
                   <p className="text-brand-gray flex items-center gap-2 text-sm">
                     <span className="text-brand-gold">◎</span> {project.location}
@@ -145,9 +181,9 @@ export default function ProjectDetail() {
 
               {/* Description */}
               <div>
-                <h2 className="text-brand-black font-bold text-lg mb-3">
+                <h3 className="text-brand-black font-bold text-lg mb-3">
                   {lang === 'id' ? 'Deskripsi Proyek' : 'Project Description'}
-                </h2>
+                </h3>
                 <p className="body-lg text-justify">
                   {tObj(project.description) || (typeof project.description === 'string' ? project.description : (project.description?.id || ''))}
                 </p>
@@ -156,9 +192,9 @@ export default function ProjectDetail() {
               {/* Scope of Work */}
               {project.scopeOfWork && (
                 <div>
-                  <h2 className="text-brand-black font-bold text-lg mb-3">
+                  <h3 className="text-brand-black font-bold text-lg mb-3">
                     {t('projectDetail.scopeOfWork')}
-                  </h2>
+                  </h3>
                   <ul className="flex flex-col gap-2">
                     {(Array.isArray(project.scopeOfWork) ? project.scopeOfWork : [project.scopeOfWork]).map((item, i) => (
                       <li key={i} className="flex items-start gap-2 text-brand-gray text-sm">
@@ -172,11 +208,11 @@ export default function ProjectDetail() {
               {/* Gallery */}
               {project.gallery && project.gallery.length > 0 && (
                 <div>
-                  <h2 className="text-brand-black font-bold text-lg mb-4">{t('projectDetail.gallery')}</h2>
+                  <h3 className="text-brand-black font-bold text-lg mb-4">{t('projectDetail.gallery')}</h3>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                     {project.gallery.map((img, i) => (
                       <div key={i} className="aspect-square overflow-hidden">
-                        <img src={img} alt={`${project.title} gallery ${i + 1}`} className="w-full h-full object-cover" loading="lazy" />
+                        <img src={img} alt={`${project.title} - Dokumentasi foto konstruksi ${i + 1}`} className="w-full h-full object-cover" loading="lazy" />
                       </div>
                     ))}
                   </div>
@@ -248,7 +284,7 @@ export default function ProjectDetail() {
                     {p.image && (
                       <img
                         src={p.image}
-                        alt={p.title}
+                        alt={`${p.title} - Proyek PT Mitra Bumi Rejeki`}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         loading="lazy"
                       />

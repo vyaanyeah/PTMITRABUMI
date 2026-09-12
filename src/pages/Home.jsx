@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '../context/LanguageContext';
 import { company } from '../data/company';
 import { services, fieldsOfWork } from '../data/services';
@@ -12,8 +11,59 @@ import PageTransition from '../components/PageTransition';
 import SectionTitle from '../components/SectionTitle';
 import ServiceCard from '../components/ServiceCard';
 import TimelineItem from '../components/TimelineItem';
+import SEO from '../components/SEO';
 import heroImg from '../assets/hero-construction.jpg';
 import aboutImg from '../assets/about-construction.jpg';
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'GeneralContractor',
+  '@id': 'https://ptmitrabumirejeki.com/#organization',
+  name: 'PT Mitra Bumi Rejeki',
+  alternateName: 'Mitra Bumi Rejeki General Contractor',
+  url: 'https://ptmitrabumirejeki.com',
+  logo: 'https://ptmitrabumirejeki.com/assets/logo-gold.jpeg',
+  image: 'https://ptmitrabumirejeki.com/images/projects/hotel-sm-tower-malioboro.png',
+  description: 'Perusahaan General Contractor dan Developer profesional di Semarang yang melayani jasa konstruksi gedung, renovasi bangunan, interior, dan pengembangan proyek.',
+  telephone: '+628812902112',
+  email: 'mitrabumirejeki@gmail.com',
+  priceRange: '$$$',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Jl. Watu Kaji No. 107, RT 02/RW 07, Gedawang',
+    addressLocality: 'Banyumanik, Semarang',
+    addressRegion: 'Jawa Tengah',
+    postalCode: '50268',
+    addressCountry: 'ID',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: -7.0737,
+    longitude: 110.4268,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '08:00',
+      closes: '17:00',
+    },
+  ],
+  sameAs: [
+    'https://www.google.com/maps/?q=Jl.+Watu+Kaji+No.+107,+Gedawang,+Banyumanik,+Semarang',
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Layanan Konstruksi & Developer',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'General Contractor & Konstruksi Gedung' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Renovasi Rumah & Komersial' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Desain Arsitektur & Interior' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Manajemen Proyek & Konstruksi Baja' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Pengembangan Proyek / Developer' } },
+    ],
+  },
+};
 
 // ── Stat Card ──────────────────────────────────────────────
 function StatBlock({ value, label, delay = 0 }) {
@@ -70,17 +120,21 @@ export default function Home() {
 
   return (
     <PageTransition>
-      <Helmet>
-        <title>PT Mitra Bumi Rejeki | General Contractor &amp; Developer</title>
-        <meta name="description" content="PT Mitra Bumi Rejeki adalah perusahaan General Contractor dan Developer yang bergerak di bidang konstruksi, renovasi, arsitektur, dan pengembangan proyek." />
-      </Helmet>
+      <SEO
+        title="PT Mitra Bumi Rejeki | General Contractor & Developer Semarang"
+        description="PT Mitra Bumi Rejeki adalah kontraktor umum dan pengembang profesional di Semarang. Berpengalaman dalam pembangunan gedung, renovasi komersial, interior, dan infrastruktur berstandar ISO 9001."
+        canonical="/"
+        schema={organizationSchema}
+        keywords="kontraktor semarang, general contractor semarang, jasa konstruksi gedung, renovasi ruko hotel, developer jawa tengah, pt mitra bumi rejeki"
+      />
 
       {/* ── HERO ─────────────────────────────────────────────── */}
       <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden" aria-label="Hero section">
         <div className="absolute inset-0 z-0">
           <motion.img
             src={heroImg}
-            alt="Construction background"
+            alt="Proyek konstruksi bangunan dan struktur PT Mitra Bumi Rejeki General Contractor"
+            fetchpriority="high"
             className="w-full h-full object-cover"
             initial={{ scale: 1.08 }}
             animate={{ scale: 1 }}
@@ -105,7 +159,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 32 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.35 }}
-              className="text-white font-black text-3xl sm:text-5xl md:text-6xl lg:text-[64px] xl:text-7xl leading-[1.08] tracking-tight mb-6"
+              className="text-white font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[54px] leading-[1.15] tracking-tight mb-6"
             >
               {t('hero.headline').split(',').map((part, i) => (
                 <span key={i}>
@@ -164,7 +218,7 @@ export default function Home() {
             {/* Image */}
             <div data-aos="fade-right" data-aos-duration="800" className="relative">
               <div className="relative overflow-hidden aspect-[4/3]">
-                <img src={aboutImg} alt="Construction interior" className="w-full h-full object-cover" loading="lazy" />
+                <img src={aboutImg} alt="Pekerjaan interior dan konstruksi bangunan PT Mitra Bumi Rejeki ISO 9001" className="w-full h-full object-cover" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-br from-brand-darkblack/10 to-transparent" />
               </div>
               <div className="absolute sm:-bottom-4 sm:-right-4 -bottom-2 -right-2 w-2/3 h-2/3 border border-brand-gold/30 -z-10" />
@@ -291,7 +345,7 @@ export default function Home() {
                   {doc.image ? (
                     <img
                       src={doc.image}
-                      alt={doc.title}
+                      alt={`${doc.title} - Dokumentasi proyek konstruksi PT Mitra Bumi Rejeki`}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
                     />
@@ -318,7 +372,7 @@ export default function Home() {
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div data-aos="fade-right">
-              <h2 className="text-brand-darkblack font-black text-3xl md:text-4xl leading-tight mb-4">{t('cta.headline')}</h2>
+              <h2 className="text-brand-darkblack font-black text-2xl md:text-3xl leading-tight mb-4">{t('cta.headline')}</h2>
               <p className="text-brand-darkblack/70 text-base leading-relaxed text-justify">{t('cta.body')}</p>
             </div>
             <div data-aos="fade-left" data-aos-delay="100" className="flex justify-start md:justify-end">

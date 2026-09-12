@@ -1,11 +1,11 @@
 // src/pages/Services.jsx
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '../context/LanguageContext';
 import { services as servicesList, fieldsOfWork } from '../data/services';
 import PageTransition from '../components/PageTransition';
 import SectionTitle from '../components/SectionTitle';
+import SEO from '../components/SEO';
 import heroImg from '../assets/hero-construction.jpg';
 
 // ── Service Card (inline, no prop collision) ───────────────
@@ -71,13 +71,12 @@ export default function Services() {
 
   return (
     <PageTransition>
-      <Helmet>
-        <title>Layanan | PT Mitra Bumi Rejeki</title>
-        <meta
-          name="description"
-          content="Layanan PT Mitra Bumi Rejeki meliputi konstruksi bangunan, perencanaan & konsultasi, dan manajemen mutu untuk berbagai jenis proyek."
-        />
-      </Helmet>
+      <SEO
+        title={lang === 'id' ? 'Layanan Konstruksi & General Contractor | PT Mitra Bumi Rejeki' : 'Construction Services & General Contractor | PT Mitra Bumi Rejeki'}
+        description={lang === 'id' ? 'Layanan komprehensif PT Mitra Bumi Rejeki mencakup konstruksi gedung, renovasi bangunan, perencanaan arsitektur, dan manajemen mutu berstandar ISO 9001.' : 'Comprehensive construction services by PT Mitra Bumi Rejeki covering building construction, renovations, architectural planning, and ISO 9001 quality management.'}
+        canonical="/services"
+        keywords="layanan konstruksi semarang, jasa renovasi gedung, kontraktor bangunan, manajemen proyek konstruksi, arsitektur semarang"
+      />
 
       {/* ── PAGE HEADER ──────────────────────────────────────── */}
       <section
@@ -85,7 +84,7 @@ export default function Services() {
         aria-label="Services page header"
       >
         <div className="absolute inset-0 z-0 opacity-15">
-          <img src={heroImg} alt="" className="w-full h-full object-cover" aria-hidden="true" />
+          <img src={heroImg} alt="Layanan konstruksi dan pembangunan PT Mitra Bumi Rejeki" className="w-full h-full object-cover" loading="lazy" />
           <div className="absolute inset-0 bg-brand-darkblack/80" />
         </div>
         <div className="container-custom relative z-10">
@@ -96,7 +95,7 @@ export default function Services() {
           >
             <span className="label-gold text-[11px]">{t('services.label')}</span>
 
-            <h1 className="text-white font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight max-w-3xl">
+            <h1 className="text-white font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight max-w-3xl">
               {t('services.headline')}
             </h1>
           </motion.div>
@@ -192,7 +191,7 @@ export default function Services() {
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div data-aos="fade-right">
-              <h2 className="text-brand-darkblack font-black text-3xl md:text-4xl leading-tight mb-4">{t('cta.headline')}</h2>
+              <h2 className="text-brand-darkblack font-black text-2xl md:text-3xl leading-tight mb-4">{t('cta.headline')}</h2>
               <p className="text-brand-darkblack/70 text-base leading-relaxed text-justify">{t('cta.body')}</p>
             </div>
             <div data-aos="fade-left" data-aos-delay="100" className="flex justify-start md:justify-end">

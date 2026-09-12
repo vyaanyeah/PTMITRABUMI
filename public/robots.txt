@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /admin/*
+
 Sitemap: https://ptmitrabumirejeki.com/sitemap.xml
