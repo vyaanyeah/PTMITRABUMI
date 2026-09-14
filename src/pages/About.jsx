@@ -5,6 +5,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { company } from '../data/company';
 import PageTransition from '../components/PageTransition';
 import SectionTitle from '../components/SectionTitle';
+import ValueChips from '../components/ValueChips';
 import SEO from '../components/SEO';
 import aboutImg from '../assets/about-construction.jpg';
 import heroImg from '../assets/hero-construction.jpg';
@@ -44,10 +45,10 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Image */}
             <div data-aos="fade-right" data-aos-duration="800" className="relative order-2 lg:order-1">
-              <div className="relative overflow-hidden aspect-[4/3]">
+              <div className="relative overflow-hidden aspect-[4/3] rounded-xl shadow-md">
                 <img src={aboutImg} alt="Aktivitas dan proyek konstruksi bangunan PT Mitra Bumi Rejeki" className="w-full h-full object-cover" loading="lazy" />
               </div>
-              <div className="absolute sm:-bottom-4 sm:-right-4 -bottom-2 -right-2 w-2/3 h-2/3 border border-brand-gold/25 -z-10" />
+              <div className="absolute sm:-bottom-4 sm:-right-4 -bottom-2 -right-2 w-2/3 h-2/3 border border-brand-gold/25 rounded-xl -z-10" />
             </div>
 
             {/* Text */}
@@ -55,14 +56,7 @@ export default function About() {
               <SectionTitle label={t('intro.label')} headline={t('intro.headline')} />
               <p className="body-lg text-justify">{t('intro.body')}</p>
               <p className="body-lg text-justify">{tObj(company.description)}</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
-                {company.values.map((v, idx) => (
-                  <div key={v.id} data-aos="zoom-in" data-aos-delay={idx * 80 + 200} className="flex items-center gap-3 bg-white border border-brand-black/5 px-4 py-3 shadow-sm">
-                    <span className="text-brand-gold text-lg shrink-0">{v.icon}</span>
-                    <span className="text-brand-black font-semibold text-sm">{tObj(v.label)}</span>
-                  </div>
-                ))}
-              </div>
+              <ValueChips />
             </div>
           </div>
         </div>
@@ -71,27 +65,21 @@ export default function About() {
       {/* ── VISION / MISSION / GOAL ──────────────────────────── */}
       <section id="vision-mission-goal" className="section-padding bg-brand-black" aria-label="Vision mission goal">
         <div className="container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {[
-              { labelKey: 'vision.label', headKey: 'vision.headline', text: tObj(company.vision), icon: '◈', delay: 0 },
-              { labelKey: 'mission.label', headKey: 'mission.headline', text: tObj(company.mission), icon: '◎', delay: 120 },
-              { labelKey: 'goal.label', headKey: 'goal.headline', text: tObj(company.goal), icon: '◆', delay: 240 },
-            ].map(({ labelKey, headKey, text, icon, delay }) => (
+              { labelKey: 'vision.label', headKey: 'vision.headline', text: tObj(company.vision), delay: 0 },
+              { labelKey: 'mission.label', headKey: 'mission.headline', text: tObj(company.mission), delay: 120 },
+              { labelKey: 'goal.label', headKey: 'goal.headline', text: tObj(company.goal), delay: 240 },
+            ].map(({ labelKey, headKey, text, delay }) => (
               <div
                 key={labelKey}
                 data-aos="fade-up"
                 data-aos-delay={delay}
-                className="flex flex-col gap-5 p-6 sm:p-8 border border-white/5 hover:border-brand-gold/30 transition-colors duration-300"
+                className="flex flex-col gap-3 p-6 sm:p-8 border border-white/5 hover:border-brand-gold/30 rounded-xl transition-colors duration-300"
               >
-                <div className="w-10 h-10 border border-brand-gold/40 flex items-center justify-center">
-                  <span className="text-brand-gold">{icon}</span>
-                </div>
-                <div>
-                  <span className="label-gold text-[10px] block mb-2">{t(labelKey)}</span>
-
-                  <h3 className="text-white font-bold text-xl mb-3">{t(headKey)}</h3>
-                  <p className="text-white/55 text-sm leading-relaxed text-justify">{text}</p>
-                </div>
+                <span className="label-gold text-[10px] block mb-1">{t(labelKey)}</span>
+                <h3 className="text-white font-bold text-xl mb-2 leading-snug">{t(headKey)}</h3>
+                <p className="text-white/55 text-sm leading-relaxed text-left">{text}</p>
               </div>
             ))}
           </div>
@@ -109,7 +97,7 @@ export default function About() {
 
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10 border border-white/10 bg-brand-black/40">
+          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10 border border-white/10 bg-brand-black/40 rounded-xl overflow-hidden">
             {/* 1. Project Experience */}
             <div data-aos="fade-up" data-aos-delay="0" className="p-8 sm:p-10 flex flex-col justify-start">
               <div className="mb-6">
@@ -177,7 +165,7 @@ export default function About() {
               <Link
                 to="/contact"
                 id="cta-contact-button-about"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-brand-darkblack text-white font-bold text-sm tracking-widest uppercase transition-all duration-300 hover:bg-brand-black hover:shadow-xl"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-brand-darkblack text-white font-bold text-sm tracking-widest uppercase transition-all duration-300 hover:bg-brand-black hover:shadow-xl rounded-lg"
               >
                 {t('cta.button')}
               </Link>

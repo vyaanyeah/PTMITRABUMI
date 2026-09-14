@@ -1,5 +1,6 @@
 // src/components/Footer.jsx
 import { Link } from 'react-router-dom';
+import { MessageCircle, Mail, MapPin } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { company } from '../data/company';
 import logoImg from '../assets/logo-gold.jpeg';
@@ -65,16 +66,18 @@ export default function Footer() {
             <h3 className="text-white font-bold text-xs md:text-sm tracking-wider uppercase mb-3">
               {t('footer.contactUs')}
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               {company.contact.phones.map(({ label, number, href }) => (
                 <li key={label}>
                   <a
                     href={href}
-                    className="text-white/65 hover:text-brand-gold text-xs md:text-sm font-medium transition-colors duration-200 flex items-start gap-2"
+                    className="text-white/65 hover:text-brand-gold text-xs md:text-sm font-medium transition-colors duration-200 flex items-center gap-2.5 group"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <span className="text-brand-gold/70 shrink-0 mt-0.5 text-xs">↗</span>
+                    <div className="w-6 h-6 rounded-full bg-brand-gold/10 flex items-center justify-center shrink-0 group-hover:bg-brand-gold/20 transition-colors">
+                      <MessageCircle className="w-3.5 h-3.5 text-brand-gold" strokeWidth={1.5} />
+                    </div>
                     <span>{number}</span>
                   </a>
                 </li>
@@ -82,15 +85,19 @@ export default function Footer() {
               <li>
                 <a
                   href={`mailto:${company.contact.email}`}
-                  className="text-white/65 hover:text-brand-gold text-xs md:text-sm font-medium transition-colors duration-200 flex items-start gap-2"
+                  className="text-white/65 hover:text-brand-gold text-xs md:text-sm font-medium transition-colors duration-200 flex items-center gap-2.5 group"
                 >
-                  <span className="text-brand-gold/70 shrink-0 mt-0.5 text-xs">✉</span>
+                  <div className="w-6 h-6 rounded-full bg-brand-gold/10 flex items-center justify-center shrink-0 group-hover:bg-brand-gold/20 transition-colors">
+                    <Mail className="w-3.5 h-3.5 text-brand-gold" strokeWidth={1.5} />
+                  </div>
                   <span className="break-all">{company.contact.email}</span>
                 </a>
               </li>
-              <li className="flex items-start gap-2 text-white/65 text-xs md:text-sm">
-                <span className="text-brand-gold/70 shrink-0 mt-0.5 text-xs">◎</span>
-                <span>{company.contact.address}</span>
+              <li className="flex items-start gap-2.5 text-white/65 text-xs md:text-sm">
+                <div className="w-6 h-6 rounded-full bg-brand-gold/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <MapPin className="w-3.5 h-3.5 text-brand-gold" strokeWidth={1.5} />
+                </div>
+                <span className="leading-snug">{company.contact.address}</span>
               </li>
             </ul>
           </div>

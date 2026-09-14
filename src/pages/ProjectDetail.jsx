@@ -5,6 +5,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { projects as fallbackProjects } from '../data/projects';
 import { getProjectById, getProjects } from '../services/projectService';
 import PageTransition from '../components/PageTransition';
+import { MapPin } from 'lucide-react';
 import SEO from '../components/SEO';
 
 export default function ProjectDetail() {
@@ -125,8 +126,9 @@ export default function ProjectDetail() {
                 {project.title}
               </h1>
               {project.location && (
-                <p className="text-white/45 text-sm flex items-center gap-2">
-                  <span className="text-brand-gold">◎</span> {project.location}
+                <p className="text-white/45 text-sm flex items-center gap-1.5">
+                  <MapPin className="w-3.5 h-3.5 text-brand-gold shrink-0" strokeWidth={1.5} />
+                  <span>{project.location}</span>
                 </p>
               )}
             </div>
@@ -173,8 +175,9 @@ export default function ProjectDetail() {
 
                 <h2 className="heading-lg text-brand-black mb-2">{project.title}</h2>
                 {project.location && (
-                  <p className="text-brand-gray flex items-center gap-2 text-sm">
-                    <span className="text-brand-gold">◎</span> {project.location}
+                  <p className="text-brand-gray flex items-center gap-1.5 text-sm">
+                    <MapPin className="w-3.5 h-3.5 text-brand-gold shrink-0" strokeWidth={1.5} />
+                    <span>{project.location}</span>
                   </p>
                 )}
               </div>
@@ -211,7 +214,7 @@ export default function ProjectDetail() {
                   <h3 className="text-brand-black font-bold text-lg mb-4">{t('projectDetail.gallery')}</h3>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                     {project.gallery.map((img, i) => (
-                      <div key={i} className="aspect-square overflow-hidden">
+                      <div key={i} className="aspect-square overflow-hidden rounded-xl">
                         <img src={img} alt={`${project.title} - Dokumentasi foto konstruksi ${i + 1}`} className="w-full h-full object-cover" loading="lazy" />
                       </div>
                     ))}
@@ -222,7 +225,7 @@ export default function ProjectDetail() {
 
             {/* Sidebar */}
             <div data-aos="fade-left" data-aos-delay="150" className="lg:col-span-1">
-              <div className="bg-brand-black p-5 sm:p-7 flex flex-col gap-6 sticky top-24">
+              <div className="bg-brand-black p-5 sm:p-7 flex flex-col gap-6 sticky top-24 rounded-xl border border-white/5">
 
                 <h3 className="text-white font-bold text-base">
                   {lang === 'id' ? 'Informasi Proyek' : 'Project Information'}
@@ -280,7 +283,7 @@ export default function ProjectDetail() {
                   className="group block"
                   aria-label={p.title}
                 >
-                  <div className="aspect-square bg-brand-darkblack relative overflow-hidden border border-brand-black/5 group-hover:border-brand-gold/30 transition-colors duration-300">
+                  <div className="aspect-square bg-brand-darkblack relative overflow-hidden rounded-xl shadow-sm group-hover:shadow-md transition-all duration-300">
                     {p.image && (
                       <img
                         src={p.image}
@@ -291,7 +294,7 @@ export default function ProjectDetail() {
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-darkblack/80 via-brand-darkblack/10 to-transparent" />
                     <div className="absolute inset-0 flex items-end p-3">
-                      <p className="text-white/80 text-xs font-medium leading-tight group-hover:text-brand-gold transition-colors duration-200">
+                      <p className="text-white/90 text-xs font-semibold leading-tight group-hover:text-brand-gold transition-colors duration-200">
                         {p.title}
                       </p>
                     </div>

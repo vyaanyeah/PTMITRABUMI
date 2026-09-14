@@ -11,7 +11,7 @@ export default function ServiceCard({ service, index = 0, dark = false }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.5, delay: index * 0.1, ease: 'easeOut' }}
-      className={`group relative flex flex-col h-full flex-1 gap-5 p-7 md:p-8 border transition-all duration-300 ${
+      className={`group relative flex flex-col h-full flex-1 gap-5 p-7 md:p-8 border rounded-xl transition-all duration-300 ${
         dark
           ? 'bg-brand-black border-white/5 hover:border-brand-gold/40'
           : 'bg-white border-brand-black/5 shadow-sm hover:shadow-md hover:border-brand-gold/30'
@@ -23,7 +23,7 @@ export default function ServiceCard({ service, index = 0, dark = false }) {
       </h3>
 
       {/* Description */}
-      <p className={`text-sm md:text-base leading-relaxed text-justify ${dark ? 'text-white/55' : 'text-brand-gray'}`}>
+      <p className={`text-sm md:text-base leading-relaxed text-left ${dark ? 'text-white/55' : 'text-brand-gray'}`}>
         {tObj(service.description)}
       </p>
 

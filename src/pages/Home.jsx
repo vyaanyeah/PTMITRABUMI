@@ -11,6 +11,7 @@ import PageTransition from '../components/PageTransition';
 import SectionTitle from '../components/SectionTitle';
 import ServiceCard from '../components/ServiceCard';
 import TimelineItem from '../components/TimelineItem';
+import ValueChips from '../components/ValueChips';
 import SEO from '../components/SEO';
 import heroImg from '../assets/hero-construction.jpg';
 import aboutImg from '../assets/about-construction.jpg';
@@ -217,12 +218,12 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Image */}
             <div data-aos="fade-right" data-aos-duration="800" className="relative">
-              <div className="relative overflow-hidden aspect-[4/3]">
+              <div className="relative overflow-hidden aspect-[4/3] rounded-xl shadow-md">
                 <img src={aboutImg} alt="Pekerjaan interior dan konstruksi bangunan PT Mitra Bumi Rejeki ISO 9001" className="w-full h-full object-cover" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-br from-brand-darkblack/10 to-transparent" />
               </div>
-              <div className="absolute sm:-bottom-4 sm:-right-4 -bottom-2 -right-2 w-2/3 h-2/3 border border-brand-gold/30 -z-10" />
-              <div className="absolute sm:-top-4 sm:-left-4 top-2 left-2 bg-brand-darkblack border border-brand-gold/40 px-3 py-2 sm:px-4 sm:py-3 z-10">
+              <div className="absolute sm:-bottom-4 sm:-right-4 -bottom-2 -right-2 w-2/3 h-2/3 border border-brand-gold/30 rounded-xl -z-10" />
+              <div className="absolute sm:-top-4 sm:-left-4 top-2 left-2 bg-brand-darkblack border border-brand-gold/40 px-3 py-2 sm:px-4 sm:py-3 rounded-lg z-10">
                 <span className="text-brand-gold text-[10px] font-bold tracking-widest uppercase block">ISO 9001</span>
                 <span className="text-white/40 text-[9px] tracking-wider">Quality Management</span>
               </div>
@@ -232,14 +233,7 @@ export default function Home() {
             <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="100" className="flex flex-col gap-7">
               <SectionTitle label={t('intro.label')} headline={t('intro.headline')} />
               <p className="body-lg text-justify">{t('intro.body')}</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
-                {company.values.map((v, idx) => (
-                  <div key={v.id} data-aos="zoom-in" data-aos-delay={idx * 80 + 200} className="flex items-center gap-3 bg-white border border-brand-black/5 px-4 py-3 shadow-sm">
-                    <span className="text-brand-gold text-lg shrink-0">{v.icon}</span>
-                    <span className="text-brand-black font-semibold text-sm">{tObj(v.label)}</span>
-                  </div>
-                ))}
-              </div>
+              <ValueChips />
               <Link to="/about" className="btn-gold self-start">{t('intro.readMore')}</Link>
             </div>
           </div>
@@ -263,7 +257,7 @@ export default function Home() {
               >
                 <span className="label-gold text-[10px] block mb-4">{t(labelKey)}</span>
                 <h2 className="text-white font-bold text-lg sm:text-xl md:text-2xl mb-4 leading-snug">{t(headKey)}</h2>
-                <p className="text-white/55 text-sm leading-relaxed text-justify">{text}</p>
+                <p className="text-white/55 text-sm leading-relaxed text-left">{text}</p>
               </div>
             ))}
           </div>
@@ -338,7 +332,7 @@ export default function Home() {
                 key={doc.id}
                 data-aos="fade-up"
                 data-aos-delay={i * 60}
-                className="group bg-white border border-brand-black/8 overflow-hidden transition-all duration-300 hover:border-brand-gold/40 hover:shadow-lg"
+                className="group bg-white border border-brand-black/8 rounded-xl overflow-hidden transition-all duration-300 hover:border-brand-gold/40 hover:shadow-lg"
               >
                 {/* Foto — aspect 4:3, tidak terlalu besar */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-brand-darkblack">
@@ -379,7 +373,7 @@ export default function Home() {
               <Link
                 to="/contact"
                 id="cta-contact-button"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-brand-darkblack text-white font-bold text-sm tracking-widest uppercase transition-all duration-300 hover:bg-brand-black hover:shadow-xl"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-brand-darkblack text-white font-bold text-sm tracking-widest uppercase transition-all duration-300 hover:bg-brand-black hover:shadow-xl rounded-lg"
               >
                 {t('cta.button')}
               </Link>

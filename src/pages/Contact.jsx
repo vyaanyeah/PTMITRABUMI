@@ -1,4 +1,5 @@
 // src/pages/Contact.jsx
+import { MessageCircle, Mail, MapPin } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { company } from '../data/company';
 import PageTransition from '../components/PageTransition';
@@ -6,11 +7,11 @@ import SectionTitle from '../components/SectionTitle';
 import ContactForm from '../components/ContactForm';
 import SEO from '../components/SEO';
 
-function ContactInfo({ icon, label, children, delay = 0 }) {
+function ContactInfo({ icon: Icon, label, children, delay = 0 }) {
   return (
     <div data-aos="fade-up" data-aos-delay={delay} className="flex gap-4">
-      <div className="w-10 h-10 border border-brand-gold/40 flex items-center justify-center shrink-0 mt-0.5">
-        <span className="text-brand-gold text-sm">{icon}</span>
+      <div className="w-10 h-10 rounded-full bg-brand-gold/10 flex items-center justify-center shrink-0 mt-0.5">
+        <Icon className="w-4 h-4 text-brand-gold" strokeWidth={1.5} />
       </div>
       <div>
         <span className="text-white/40 text-xs uppercase tracking-widest block mb-1">{label}</span>
@@ -45,20 +46,20 @@ export default function Contact() {
 
               <div className="flex flex-col gap-6 mt-2">
                 {company.contact.phones.map(({ label, number, href }, i) => (
-                  <ContactInfo key={label} icon="☎" label={label} delay={i * 80 + 100}>
+                  <ContactInfo key={label} icon={MessageCircle} label={label} delay={i * 80 + 100}>
                     <a href={href} className="text-white font-semibold hover:text-brand-gold transition-colors duration-200" target="_blank" rel="noopener noreferrer">
                       {number}
                     </a>
                   </ContactInfo>
                 ))}
 
-                <ContactInfo icon="✉" label={t('contact.email')} delay={260}>
+                <ContactInfo icon={Mail} label={t('contact.email')} delay={260}>
                   <a href={`mailto:${company.contact.email}`} className="text-white font-semibold hover:text-brand-gold transition-colors duration-200 break-all">
                     {company.contact.email}
                   </a>
                 </ContactInfo>
 
-                <ContactInfo icon="◎" label={t('contact.address')} delay={340}>
+                <ContactInfo icon={MapPin} label={t('contact.address')} delay={340}>
                   <a href={company.contact.mapsUrl} target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-brand-gold transition-colors duration-200 text-sm leading-relaxed">
                     {company.contact.address}
                     <br />
@@ -70,7 +71,7 @@ export default function Contact() {
 
             {/* Right: form */}
             <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="150">
-              <div className="border border-white/5 p-5 sm:p-7 md:p-10">
+              <div className="border border-white/5 p-5 sm:p-7 md:p-10 rounded-xl bg-brand-black/40">
 
                 <h2 className="text-white font-bold text-xl mb-8">
                   {t('contact.form.waTitle')}
@@ -83,13 +84,13 @@ export default function Contact() {
       </section>
 
       {/* ── GOOGLE MAPS ──────────────────────────────────────── */}
-      <section id="google-maps" className="bg-brand-black" aria-label="Office location map">
-        <div className="w-full">
-          <div data-aos="fade-up" className="container-custom py-4">
-            <p className="text-white/40 text-xs tracking-widest uppercase">{t('contact.address')}</p>
-            <p className="text-white/70 text-sm mt-1">{company.contact.address}</p>
+      <section id="google-maps" className="bg-brand-black section-padding-sm" aria-label="Office location map">
+        <div className="container-custom">
+          <div data-aos="fade-up" className="mb-6">
+            <span className="label-gold text-[10px] block mb-1">{t('contact.address')}</span>
+            <p className="text-white/80 text-sm">{company.contact.address}, {company.contact.city}</p>
           </div>
-          <div className="w-full h-72 md:h-96">
+          <div className="w-full h-80 md:h-[420px] rounded-xl overflow-hidden border border-white/10 shadow-lg">
             <iframe
               id="maps-embed"
               title="PT Mitra Bumi Rejeki Location"

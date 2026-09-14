@@ -69,9 +69,9 @@ export default function Portfolio() {
                 role="tab"
                 aria-selected={activeCategory === cat.key}
                 onClick={() => setActiveCategory(cat.key)}
-                className={`px-4 sm:px-5 py-2 sm:py-2.5 text-xs font-semibold tracking-widest uppercase transition-all duration-200 border whitespace-nowrap shrink-0 sm:shrink ${
+                className={`px-4 sm:px-5 py-2 sm:py-2.5 text-xs font-semibold tracking-widest uppercase transition-all duration-200 border rounded-lg whitespace-nowrap shrink-0 sm:shrink ${
                   activeCategory === cat.key
-                    ? 'bg-brand-gold border-brand-gold text-brand-darkblack'
+                    ? 'bg-brand-gold border-brand-gold text-brand-darkblack shadow-sm'
                     : 'bg-white border-brand-black/10 text-brand-gray hover:border-brand-gold hover:text-brand-gold'
                 }`}
               >

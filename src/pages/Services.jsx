@@ -5,6 +5,8 @@ import { useLanguage } from '../context/LanguageContext';
 import { services as servicesList, fieldsOfWork } from '../data/services';
 import PageTransition from '../components/PageTransition';
 import SectionTitle from '../components/SectionTitle';
+import { valueIconMap } from '../components/ValueChips';
+import { Award } from 'lucide-react';
 import SEO from '../components/SEO';
 import heroImg from '../assets/hero-construction.jpg';
 
@@ -17,10 +19,10 @@ function ServiceCard({ service, index }) {
     <div
       data-aos="fade-up"
       data-aos-delay={index * 130}
-      className="group relative flex flex-col h-full gap-5 p-7 md:p-8 border bg-white border-brand-black/5 shadow-sm hover:shadow-md hover:border-brand-gold/30 transition-all duration-300 overflow-hidden"
+      className="group relative flex flex-col h-full gap-5 p-7 md:p-8 border bg-white border-brand-black/5 shadow-sm hover:shadow-md hover:border-brand-gold/30 transition-all duration-300 rounded-xl overflow-hidden"
     >
       <h3 className="text-lg md:text-xl font-bold text-brand-black">{tObj(service.title)}</h3>
-      <p className="text-sm md:text-base leading-relaxed text-brand-gray text-justify">{tObj(service.description)}</p>
+      <p className="text-sm md:text-base leading-relaxed text-brand-gray text-left">{tObj(service.description)}</p>
       {features.length > 0 && (
         <ul className="flex flex-col gap-2 mt-auto pt-2">
           {features.map((feature, i) => (
@@ -137,8 +139,8 @@ export default function Services() {
                   {tObj(qmService.description)}
                 </p>
               )}
-              <div className="inline-flex items-center gap-4 border border-brand-gold/30 px-5 sm:px-6 py-4">
-                <div className="w-11 h-11 border-2 border-brand-gold flex items-center justify-center shrink-0">
+              <div className="inline-flex items-center gap-4 border border-brand-gold/30 px-5 sm:px-6 py-4 rounded-lg">
+                <div className="w-11 h-11 border-2 border-brand-gold flex items-center justify-center shrink-0 rounded-md">
                   <span className="text-brand-gold font-black text-xs">ISO</span>
                 </div>
                 <span className="text-white font-semibold text-base">{t('certifications.iso')}</span>
@@ -147,19 +149,24 @@ export default function Services() {
 
             {/* Right: value cards */}
             <div className="grid grid-cols-2 gap-3 sm:gap-4">
-              {qualityValues.map(({ icon, id, labelID, labelEN }, i) => (
-                <div
-                  key={id}
-                  data-aos="zoom-in"
-                  data-aos-delay={i * 80}
-                  className="border border-white/5 hover:border-brand-gold/30 transition-colors duration-300 p-5 sm:p-6 flex flex-col gap-2.5"
-                >
-                  <span className="text-brand-gold text-2xl">{icon}</span>
-                  <span className="text-white font-semibold text-base md:text-lg">
-                    {lang === 'id' ? labelID : labelEN}
-                  </span>
-                </div>
-              ))}
+              {qualityValues.map(({ id, labelID, labelEN }, i) => {
+                const IconComp = valueIconMap[id] || Award;
+                return (
+                  <div
+                    key={id}
+                    data-aos="zoom-in"
+                    data-aos-delay={i * 80}
+                    className="border border-white/5 hover:border-brand-gold/30 transition-colors duration-300 p-5 sm:p-6 flex flex-col gap-3 rounded-xl bg-white/[0.02]"
+                  >
+                    <div className="w-10 h-10 rounded-lg bg-brand-gold/10 flex items-center justify-center">
+                      <IconComp className="w-5 h-5 text-brand-gold stroke-[1.75]" />
+                    </div>
+                    <span className="text-white font-semibold text-base md:text-lg">
+                      {lang === 'id' ? labelID : labelEN}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -176,7 +183,7 @@ export default function Services() {
               className="mb-10"
             />
           </div>
-          <div className="border border-brand-black/8 bg-white">
+          <div className="border border-brand-black/8 bg-white rounded-xl overflow-hidden">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5">
               {fieldsOfWork.map((field, i) => (
                 <FieldRow key={field.id} field={field} index={i} />
@@ -198,7 +205,7 @@ export default function Services() {
               <Link
                 to="/contact"
                 id="cta-contact-button-services"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-brand-darkblack text-white font-bold text-sm tracking-widest uppercase transition-all duration-300 hover:bg-brand-black hover:shadow-xl"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-brand-darkblack text-white font-bold text-sm tracking-widest uppercase transition-all duration-300 hover:bg-brand-black hover:shadow-xl rounded-lg"
               >
                 {t('cta.button')}
               </Link>

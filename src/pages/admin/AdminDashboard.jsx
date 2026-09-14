@@ -8,7 +8,6 @@ import {
   Star,
   Layers,
   Database,
-  PlusCircle,
   ArrowRight,
   ExternalLink,
   Edit,
@@ -43,22 +42,13 @@ export default function AdminDashboard() {
   return (
     <div className="space-y-8">
       {/* ── HEADER ───────────────────────────────────────────── */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
-        <div>
-          <h1 className="text-2xl sm:text-3xl font-black text-white tracking-wide">
-            DASHBOARD ADMIN
-          </h1>
-          <p className="text-white/50 text-xs sm:text-sm mt-1">
-            Selamat datang kembali, <span className="text-brand-gold font-semibold">{user?.email}</span>
-          </p>
-        </div>
-        <Link
-          to="/admin/projects/new"
-          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-brand-gold hover:bg-[#d9b85c] text-brand-darkblack font-bold text-xs uppercase tracking-wider rounded-lg shadow-lg hover:shadow-brand-gold/20 transition-all self-start sm:self-auto"
-        >
-          <PlusCircle size={16} />
-          <span>Tambah Proyek Baru</span>
-        </Link>
+      <div className="pb-6 border-b border-white/10">
+        <h1 className="text-2xl sm:text-3xl font-black text-white tracking-wide">
+          DASHBOARD ADMIN
+        </h1>
+        <p className="text-white/50 text-xs sm:text-sm mt-1">
+          Selamat datang kembali, <span className="text-brand-gold font-semibold">{user?.email}</span>
+        </p>
       </div>
 
       {/* ── STATUS BANNER (Hanya ditampilkan jika koneksi database terputus / fallback) ── */}
@@ -171,7 +161,7 @@ export default function AdminDashboard() {
           </div>
         ) : projects.length === 0 ? (
           <div className="p-12 text-center text-white/40 text-xs">
-            Belum ada proyek terdaftar. Klik tombol Tambah Proyek Baru di atas.
+            Belum ada proyek terdaftar. Tambahkan proyek baru melalui menu di sidebar.
           </div>
         ) : (
           <div className="overflow-x-auto">

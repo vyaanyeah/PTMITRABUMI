@@ -1,6 +1,7 @@
 // src/components/ProjectCard.jsx
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { MapPin } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function ProjectCard({ project, index = 0 }) {
@@ -17,7 +18,7 @@ export default function ProjectCard({ project, index = 0 }) {
       <Link
         to={`/portfolio/${project.id}`}
         aria-label={`${t('portfolio.viewDetail')}: ${project.title}`}
-        className="block"
+        className="block rounded-xl overflow-hidden border border-brand-black/5 hover:border-brand-gold/30 hover:shadow-md transition-all duration-300 bg-white"
       >
         {/* Image block */}
         <div className="relative overflow-hidden aspect-[4/3] bg-brand-black">
@@ -45,7 +46,7 @@ export default function ProjectCard({ project, index = 0 }) {
 
           {/* Category badge */}
           <div className="absolute top-3 left-3">
-            <span className="bg-brand-gold/90 text-brand-darkblack text-[10px] font-bold px-2.5 py-1 tracking-wider uppercase">
+            <span className="bg-brand-gold/90 text-brand-darkblack text-[10px] font-bold px-2.5 py-1 tracking-wider uppercase rounded-md">
               {lang === 'id' ? project.categoryID : project.category}
             </span>
           </div>
@@ -59,14 +60,14 @@ export default function ProjectCard({ project, index = 0 }) {
         </div>
 
         {/* Card body */}
-        <div className="bg-white border border-brand-black/5 border-t-0 px-5 py-4 group-hover:border-brand-gold/20 transition-colors duration-300">
+        <div className="bg-white px-5 py-4 group-hover:border-brand-gold/20 transition-colors duration-300">
           <h3 className="font-bold text-brand-black text-base mb-1 group-hover:text-brand-gold transition-colors duration-200 leading-snug">
             {project.title}
           </h3>
           {project.location && (
             <p className="text-brand-gray text-xs flex items-center gap-1.5">
-              <span className="text-brand-gold/60">◎</span>
-              {project.location}
+              <MapPin className="w-3 h-3 text-brand-gold/80 shrink-0" strokeWidth={1.5} />
+              <span>{project.location}</span>
             </p>
           )}
         </div>
