@@ -1,6 +1,5 @@
 // src/components/Footer.jsx
 import { Link } from 'react-router-dom';
-import { ShieldCheck } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { company } from '../data/company';
 import logoImg from '../assets/logo-gold.jpeg';
@@ -104,19 +103,9 @@ export default function Footer() {
           <p className="text-white/40 text-[11px] md:text-xs text-center sm:text-left">
             © {year} PT Mitra Bumi Rejeki. {t('footer.rights')}
           </p>
-          <div className="flex items-center gap-3">
-            <Link
-              to="/admin/login"
-              className="text-white/30 hover:text-brand-gold text-[11px] transition-colors flex items-center gap-1.5 py-0.5 px-2 rounded bg-white/[0.03] hover:bg-white/[0.08] border border-white/5"
-              title="Portal Khusus Administrator"
-            >
-              <ShieldCheck size={12} className="text-brand-gold/70" />
-              <span>Portal Admin</span>
-            </Link>
-            <p className="text-brand-gold/60 text-[11px] md:text-xs tracking-widest uppercase">
-              General Contractor & Developer
-            </p>
-          </div>
+          <p className="text-brand-gold/60 text-[11px] md:text-xs tracking-widest uppercase">
+            General Contractor & Developer
+          </p>
         </div>
       </div>
     </footer>
